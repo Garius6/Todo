@@ -1,5 +1,7 @@
 'use strict'
 
-const { start } = require('./lib/server')
+const { Server } = require('./lib/server')
 
-start()
+const server = new Server({ port: 8000 })
+
+server.start()

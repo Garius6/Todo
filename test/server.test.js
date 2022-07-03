@@ -3,21 +3,23 @@
 const Lab = require('@hapi/lab')
 const { expect } = require('@hapi/code')
 const { afterEach, beforeEach, describe, it } = exports.lab = Lab.script()
-const { init } = require('../lib/server')
+const { Server } = require('../lib/server')
 
-describe('GET todo', () => {
-  let server
+const dbPath = './db_test'
+
+describe('Todo CRUD test', () => {
+  const server = new Server({ dbPath })
 
   beforeEach(async () => {
-    server = await init()
+    server.init()
   })
 
   afterEach(async () => {
-    await server.stop()
+    await server.server.stop()
   })
 
-  it('respond with 200', async () => {
-    const res = await server.inject({
+  it('/api/todo respond with 200', async () => {
+    const res = await server.server.inject({
       method: 'GET',
       url: '/api/todo'
     })
