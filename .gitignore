@@ -1,5 +1,5 @@
 storage.db
-*_test
+*_test.db
 # Logs
 logs
 *.log

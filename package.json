@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "lab -v **/*.test.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:down": "npx sequelize-cli db:migrate:undo"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +23,7 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.3",
-    "eslint-plugin-promise": "^6.0.0"
+    "eslint-plugin-promise": "^6.0.0",
+    "sequelize-cli": "^6.4.1"
   }
 }

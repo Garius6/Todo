@@ -4,7 +4,8 @@
 Для начала работы нужно установить [node.js](https://nodejs.org/en/download/). Для запуска сервера нужно в каталоге проекта ввести следущие команды: 
 ```
 npm install
-npm start
+npm run migrate:up
+NODE_ENV=production npm start
 ```
 
 Каждый метод нижеописанного API должен сопровождаться префиксом `/api`

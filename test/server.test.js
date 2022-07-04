@@ -5,13 +5,12 @@ const { expect } = require('@hapi/code')
 const { afterEach, beforeEach, describe, it } = exports.lab = Lab.script()
 const { Server } = require('../lib/server')
 
-const dbPath = './db_test'
-
 describe('Todo CRUD test', () => {
-  const server = new Server({ dbPath })
+  const server = new Server()
 
   beforeEach(async () => {
     server.init()
+    await server.Todo.sync()
   })
 
   afterEach(async () => {
