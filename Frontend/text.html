@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>ToDolist</title>
+		<meta charset="utf-8"; content="text/html">
+		<link rel="stylesheet"; href="Css/styles.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="column">
+                <div class="column__inner">
+                    <div class="column__title"><h1>Нужно сделать</h1></div>
+                    <div class="card" draggable="true" >
+                        <div class="card__title">Figaro Figaro1</div>
+                        <div class="card__desc deactive"> Romulo Romulo Romulo</div>
+                    </div>
+                    <div class="card" draggable="true" >2
+                    </div>
+                    <div class="card" draggable="true" >3
+                    </div>
+                </div>
+                <div class="column__add" onclick = "add_window()">+</div>
+			</div>
+            
+			<div class="column">
+                <div class="column__inner">
+				    <div class="column__title"><h1>В процессе</h1></div>
+                </div>
+			</div>
+			<div class="column">
+                <div class="column__inner">
+				    <div class="column__title"><h1>Завершено</h1></div>
+                </div>
+            </div>  
+		</div>
+        
+        <div class="add deactive">
+            <div class="add__card">
+                <div class="add__button"><p class="quit__button" onclick = "close_window()">X</p></div>
+                <textarea class="add__input input_title"></textarea>
+                <textarea class="add__input input_desc"></textarea>
+                <div class="add__button"><p class="create__button" onclick = "add_card()">Добавить</p></div>
+            </div>
+        </div>
+        <script src="Scripts/script.js"></script>
+	</body>
+    
+</html>
