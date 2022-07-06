@@ -19,7 +19,7 @@ todo - модель содержит информацию об 2 карточк�
 
 ### Пример
 ```json
-{"id": 1, "title": 'test', "description": 'test', "status": 't'}
+{"id": 1, "title": "test", "description": "test", "status": "t"}
 ```
 
 ## API
