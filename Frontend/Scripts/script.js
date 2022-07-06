@@ -61,7 +61,7 @@ function add_card() {
 }
 
 async function post(user) {
-    let response = await fetch('C:\Users\Ahmed\Desktop\ToDoList', {
+    let response = await fetch('https://eoj6llq3dp0ddl9.m.pipedream.net', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
@@ -70,9 +70,10 @@ async function post(user) {
     })
 }
 
-//let url = '/todo';
-//let response = await fetch(url);
-//
-//let commits = await response.json(); // читаем ответ в формате JSON
-//
-//alert(commits[0].author.login);
+fetch('https://eoj6llq3dp0ddl9.m.pipedream.net')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
