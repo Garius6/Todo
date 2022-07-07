@@ -40,40 +40,43 @@ function getDragAfterElement(column__inner, y) {
 }
 
 function add_window() {
-    const add = document.querySelector('.add')
-    add.classList.remove("deactive")
+  const add = document.querySelector('.add')
+  add.classList.remove("deactive")
 }
 
 function close_window() {
-    const add = document.querySelector('.add')
-    add.classList.add("deactive")
-} 
+  const add = document.querySelector('.add')
+  add.classList.add("deactive")
+}
 
 function add_card() {
-    let user = {
-        title: document.querySelector('.input_title').value,
-        description: document.querySelector('.input_title').value,
-        status: 't'
-    }
-    post(user)
-    const add = document.querySelector('.add')
-    add.classList.add("deactive")
+  let card = {
+    title: document.querySelector('.input_title').value,
+    description: document.querySelector('.input_title').value,
+    status: 't'
+  }
+  post(card)
+  const add = document.querySelector('.add')
+  add.classList.add("deactive")
 }
 
-async function post(user) {
-    let response = await fetch('https://eoj6llq3dp0ddl9.m.pipedream.net', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-          },
-        body: JSON.stringify(user)
-    })
-}
-
-fetch('https://eoj6llq3dp0ddl9.m.pipedream.net')
-  .then((response) => {
-    return response.json();
+async function post(card) {
+  let response = await fetch('/api/todo', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify(card)
   })
-  .then((data) => {
-    console.log(data);
-  });
+}
+async function get() {
+  fetch('/api/todo')
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      data.forEach(element => {
+        console.log(element.title)
+      });
+    });
+}

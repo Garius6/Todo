@@ -4,16 +4,40 @@ const Hapi = require('@hapi/hapi')
 const db = require('../models/index.js')
 
 class Server {
-  constructor ({ host = 'localhost', port = 3000 } = {}) {
+  constructor ({ host = 'localhost', port = 8000 } = {}) {
     this.server = Hapi.server({
       port,
       host
     })
 
     this.Todo = db.Todo
+  }
 
+  async routes () {
+    await this.server.register(require('@hapi/inert'))
+
+    this.server.events.on('response', function (request) {
+      console.log(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.path + ' --> ' + request.response.statusCode)
+    })
     this.server.route(
       [
+        {
+          method: 'GET',
+          path: '/',
+          handler: (request, h) => {
+            return h.file(__dirname + '/../../frontend/text.html', { confine: false })
+          }
+        },
+        {
+          method: 'GET',
+          path: '/static/{params*}',
+          handler: {
+            directory: {
+              path: __dirname + '/../../frontend/static',
+              listing: true
+            }
+          }
+        },
         {
           method: 'GET',
           path: '/api/todo',
@@ -71,11 +95,13 @@ class Server {
   }
 
   async init () {
+    await this.routes()
     await this.server.initialize()
     return this.server
   }
 
   async start () {
+    await this.routes()
     await this.server.start()
     console.log('Server running on %s', this.server.info.uri)
     return this.server
