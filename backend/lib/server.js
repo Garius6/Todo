@@ -2,6 +2,7 @@
 
 const Hapi = require('@hapi/hapi')
 const db = require('../models/index.js')
+const path = require('path')
 
 class Server {
   constructor ({ host = 'localhost', port = 8000 } = {}) {
@@ -25,7 +26,7 @@ class Server {
           method: 'GET',
           path: '/',
           handler: (request, h) => {
-            return h.file(__dirname + '/../../frontend/text.html', { confine: false })
+            return h.file(path.join(__dirname, '..', '..', 'frontend', 'text.html'), { confine: false })
           }
         },
         {
@@ -33,7 +34,7 @@ class Server {
           path: '/static/{params*}',
           handler: {
             directory: {
-              path: __dirname + '/../../frontend/static',
+              path: path.join(__dirname, '..', '..', 'frontend', 'static'),
               listing: true
             }
           }
